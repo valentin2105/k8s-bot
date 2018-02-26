@@ -2,6 +2,10 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/valentin2105/k8s-bot)](https://goreportcard.com/report/github.com/valentin2105/k8s-bot)
 [![Build Status](https://travis-ci.org/valentin2105/k8s-bot.svg?branch=master)](https://travis-ci.org/valentin2105/k8s-bot)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![MIT License](http://b.repl.ca/v1/License-MIT-red.png)](LICENSE)
+
+
 
 `k8s-bot` is a small Golang Bot that allow you to request your Kubernetes cluster via Hipchat channel.
 
