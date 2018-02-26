@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	kubeWord    = "!k"
+	KubeWord    = "!k"
 	color       = "green"
 	botName     = "k8s-bot"
 	watchSecond = 3
@@ -40,7 +40,7 @@ func main() {
 			}
 			words := strings.Fields(lastmsg)
 			// Launch Checks
-			cmd := CheckBeforeExec(words, lastmsg)
+			cmd = CheckBeforeExec(words, lastmsg)
 			if cmd != "null" {
 				fmt.Printf("----> Command executed : %+v\n", cmd)
 				// Let's launch the kubectl cmd.
@@ -50,7 +50,7 @@ func main() {
 				cl := strings.Replace(result, "\n\n", "\n", -1)
 				if err == nil {
 					HipchatNotify(cl)
-					fmt.Println("Hipchat message sended...")
+					fmt.Println("--> Hipchat message send.")
 				} else {
 					fmt.Printf("Error during kubectl cmd : %q \n", err)
 				}

@@ -24,36 +24,33 @@ func BasicAnswers(firstword []string) {
 
 // CheckBeforeExec - Check stuffs before exec.
 func CheckBeforeExec(words []string, lastmsg string) string {
-	if words[0] == kubeWord {
-		cmd := strings.Replace(lastmsg, kubeWord, "kubectl -n", -1)
+	cmd := "null"
+	if words[0] == KubeWord && len(words) >= 3 {
+		cmd = strings.Replace(lastmsg, KubeWord, "/usr/local/bin/kubectl -n", -1)
+
 		// If it contain "all" namespace
 		if words[1] == "all" {
 			cmd = cmd + " --all-namespaces"
 		}
-		// If command is too short
-		if len(words) <= 3 {
-			fmt.Printf("Error, command unavailable %+v \n", cmd)
-			HipchatNotify("Error, command incomplete")
+
+		if !StringInSlice(words[2], trustedVerbs) {
+			fmt.Printf("-> Error, command unavailable %+v \n", cmd)
+			HipchatNotify("Error, command Forbidden")
 			cmd = "null"
 		}
 		// Match TRUSTED words (get, scale ...)
-		if StringInSlice(words[2], trustedVerbs) {
-			if words[2] == "logs" && StringInSlice("-f", words) {
-				fmt.Printf("Error, command unavailable %+v \n", cmd)
-				HipchatNotify("Error, command Forbidden (logs -f)")
-				cmd = "null"
-			}
-			if words[2] == "exec" && StringInSlice("-it", words) {
-				fmt.Printf("Error, command unavailable %+v \n", cmd)
-				HipchatNotify("Error, command Forbidden (exec -it)")
-				cmd = "null"
-			}
+		if words[2] == "logs" && StringInSlice("-f", words) {
+			fmt.Printf("-> Error, command unavailable %+v \n", cmd)
+			HipchatNotify("Error, command Forbidden (logs -f)")
+			cmd = "null"
 		}
-		return cmd
-	} else {
-		cmd = "null"
-		return cmd
+		if words[2] == "exec" && StringInSlice("-it", words) {
+			fmt.Printf("-> Error, command unavailable %+v \n", cmd)
+			HipchatNotify("Error, command Forbidden (exec -it)")
+			cmd = "null"
+		}
 	}
+	return cmd
 }
 
 // StringInSlice - check string in slice
