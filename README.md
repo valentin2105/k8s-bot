@@ -1,6 +1,6 @@
 # k8s-bot
 
-<img src="https://i.imgur.com/xEKfAnd.png" width="500" height="200" >
+<img src="https://i.imgur.com/xEKfAnd.png" width="550" height="230" >
 
 `k8s-bot` is a small Golang Bot that allow you to request your Kubernetes cluster via Hipchat channel.
 
