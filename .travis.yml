@@ -5,4 +5,3 @@ go:
 script:
  - go test -v ./...
  - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o k8s-bot .
- - ./k8s-bot -h
