@@ -15,11 +15,11 @@ helm install -n k8s-bot --namespace k8s-bot --set provider=Hipchat --set token=<
 
 ## How to use it ?
 ```
-!k default get deploy
+!k - get cs
 
-!k default get cs
+!k kube-system get deploy 
 
-!k all get pod --all-namespaces
+!k all get pod
 ```
 
 <img src="https://i.imgur.com/9qNRiiT.png" width="463" height="236"> 
