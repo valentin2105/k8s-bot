@@ -57,7 +57,7 @@ func main() {
 				BasicAnswers(words)
 			}
 		} else {
-			fmt.Printf("Error, Provider unavailable %s \n", provider)
+			fmt.Printf("Error, Provider unavailable (Hipchat or Slack) \n")
 		}
 		// Slack
 		if *provider == "Slack" {
