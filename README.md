@@ -13,7 +13,7 @@ Install it quickly in your cluster using `Helm` with your Chat Application crede
 
 ```
 git clone https://github.com/valentin2105/k8s-bot.git && cd k8s-bot/helm
-helm install -n k8s-bot --namespace k8s-bot --set provider=Hipchat --set token=<token> --set room=<room> .
+helm install -n k8s-bot --namespace k8s-bot --set provider=Hipchat --set token=<token> --set room="<room-id>" .
 ```
 
 (You need to use Hipchat User's token and Room's ID like `3999999`)
