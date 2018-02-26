@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os/exec"
 	"strings"
 )
 
@@ -51,6 +52,19 @@ func CheckBeforeExec(words []string, lastmsg string) string {
 		}
 	}
 	return cmd
+}
+
+func ExecKubectl(cmd string) string {
+	args := strings.Split(cmd, " ")
+	out, err := exec.Command(args[0], args[1:]...).Output()
+	if err == nil {
+		result := fmt.Sprintf("/code %s", out)
+		cl := strings.Replace(result, "\n\n", "\n", -1)
+		return cl
+	} else {
+		cl := "null"
+		return cl
+	}
 }
 
 // StringInSlice - check string in slice

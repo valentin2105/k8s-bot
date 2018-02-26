@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os/exec"
 	"strings"
 	"time"
 )
@@ -45,15 +44,12 @@ func main() {
 			if cmd != "null" {
 				fmt.Printf("----> Command executed : %+v\n", cmd)
 				// Let's launch the kubectl cmd.
-				args := strings.Split(cmd, " ")
-				out, err := exec.Command(args[0], args[1:]...).Output()
-				result := fmt.Sprintf("/code %s", out)
-				cl := strings.Replace(result, "\n\n", "\n", -1)
-				if err == nil {
+				cl := ExecKubectl(cmd)
+				if cl != "null" {
 					HipchatNotify(cl)
 					fmt.Println("--> Hipchat message send.")
 				} else {
-					fmt.Printf("Error during kubectl cmd : %q \n", err)
+					fmt.Printf("Error during kubectl cmd. \n")
 				}
 				BasicAnswers(words)
 			}
