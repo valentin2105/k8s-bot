@@ -1,8 +1,9 @@
 # k8s-bot
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/valentin2105/k8s-bot)](https://goreportcard.com/report/github.com/valentin2105/k8s-bot)
+
 `k8s-bot` is a small Golang Bot that allow you to request your Kubernetes cluster via Hipchat channel.
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/valentin2105/k8s-bot)](https://goreportcard.com/report/github.com/valentin2105/k8s-bot)
 ## How install it ?
 Install it quickly in your cluster using `Helm` with your Chat Application credentials :
 
