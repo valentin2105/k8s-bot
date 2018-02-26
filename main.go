@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	// The Word that trigger the bot.
+	// KubeWord - The Word that trigger the bot.
 	KubeWord    = "!k"
 	color       = "green"
 	botName     = "k8s-bot"
