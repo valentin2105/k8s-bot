@@ -2,37 +2,61 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/tbruyelle/hipchat-go/hipchat"
+	"strings"
 )
 
-// Add some funny questions
-func BasicAnswers(firstword string) {
-	if firstword == "Hello" {
-		HipchatNotify("Hello boss, How I can help you ?")
+// BasicAnswers - ...
+func BasicAnswers(firstword []string) {
+	// Add some funny questions
+	if firstword[0] == "Bonjour" || firstword[0] == "Hello" {
+		HipchatNotify("Bienvenue patron, que puis-je faire pour vous ?")
 	}
-	if firstword == "help" || firstword == "?" {
-		HipchatNotify("To request myself -> '!k namespace verb ressource' (!k default get pod) ...")
+	if firstword[0] == "help" || firstword[0] == "aide" || firstword[0] == "?" {
+		HipchatNotify("Pour interagir avec moi : '!k namespace verb ressource' (!k default get pod) ...")
 	}
-	if firstword == "Who" {
-		HipchatNotify("You, are !")
+	if firstword[0] == "Qui" {
+		HipchatNotify("Vous, bien sûr !")
 	}
-	if firstword == "thanks" || firstword == "Thanks" {
-		HipchatNotify("With pleasures, boss.")
-	}
-}
-
-// Notify Hipchat
-func HipchatNotify(message string) {
-	c := hipchat.NewClient(*token)
-	notifRq := &hipchat.NotificationRequest{Message: message, Color: color, From: botName, MessageFormat: "text"}
-	err, _ := c.Room.Notification(*room, notifRq)
-	if err != nil {
-		fmt.Println("Error to Notify Hipchat...")
+	if firstword[0] == "Merci" {
+		HipchatNotify("Avec plaisir patron.")
 	}
 }
 
-// IsStringinSlice ?
+// CheckBeforeExec - Check stuffs before exec.
+func CheckBeforeExec(words []string, lastmsg string) string {
+	if words[0] == kubeWord {
+		cmd := strings.Replace(lastmsg, kubeWord, "kubectl -n", -1)
+		// If it contain "all" namespace
+		if words[1] == "all" {
+			cmd = cmd + " --all-namespaces"
+		}
+		// If command is too short
+		if len(words) <= 3 {
+			fmt.Print("Error, command unavailable %+v \n", cmd)
+			HipchatNotify("Error, command incomplete")
+			cmd = "null"
+		}
+		// Match TRUSTED words (get, scale ...)
+		if StringInSlice(words[2], trustedVerbs) {
+			if words[2] == "logs" && StringInSlice("-f", words) {
+				fmt.Print("Error, command unavailable %+v \n", cmd)
+				HipchatNotify("Error, command Forbidden (logs -f)")
+				cmd = "null"
+			}
+			if words[2] == "exec" && StringInSlice("-it", words) {
+				fmt.Print("Error, command unavailable %+v \n", cmd)
+				HipchatNotify("Error, command Forbidden (exec -it)")
+				cmd = "null"
+			}
+		}
+		return cmd
+	} else {
+		cmd = "null"
+		return cmd
+	}
+}
+
+// StringInSlice - check string in slice
 func StringInSlice(str string, list []string) bool {
 	for _, v := range list {
 		if v == str {
