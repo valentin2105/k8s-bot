@@ -51,7 +51,6 @@ func main() {
 				} else {
 					fmt.Printf("Error during kubectl cmd. \n")
 				}
-				BasicAnswers(words)
 			}
 		} else {
 			fmt.Printf("Error, Provider unavailable (Hipchat or Slack) \n")

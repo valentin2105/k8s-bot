@@ -6,23 +6,6 @@ import (
 	"strings"
 )
 
-// BasicAnswers - ...
-func BasicAnswers(firstword []string) {
-	// Add some funny questions
-	if firstword[0] == "Bonjour" || firstword[0] == "Hello" {
-		HipchatNotify("Bienvenue patron, que puis-je faire pour vous ?")
-	}
-	if firstword[0] == "help" || firstword[0] == "aide" || firstword[0] == "?" {
-		HipchatNotify("Pour interagir avec moi : '!k namespace verb ressource' (!k default get pod) ...")
-	}
-	if firstword[0] == "Qui" {
-		HipchatNotify("Vous, bien sûr !")
-	}
-	if firstword[0] == "Merci" {
-		HipchatNotify("Avec plaisir patron.")
-	}
-}
-
 // CheckBeforeExec - Check stuffs before exec.
 func CheckBeforeExec(words []string, lastmsg string) string {
 	cmd := "null"
