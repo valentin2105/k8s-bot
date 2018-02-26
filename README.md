@@ -26,7 +26,7 @@ token: "thenah7oCaishei7een2it7iu9jucie5uphoa1ohg2ain2iengooShoo8Ee7eeNa" # Chan
 helm install -n k8s-bot --namespace k8s-bot .
 ```
 
-(You need to use Hipchat User's token and Room's ID like `3999999`)
+You need to use Hipchat User's token (`Account Settings -> API Access -> Generate token`)
 
 ## How to use it ?
 ```
