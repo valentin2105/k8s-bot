@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.pod }}
+  labels:
+    k8s-app: {{ .Values.pod }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: {{ .Values.pod }}
+  template:
+    metadata:
+      labels:
+        k8s-app: {{ .Values.pod }}
+        name: {{ .Values.pod }}
+    spec:
+      containers:
+      - image: {{ .Values.image }}
+        name: {{ .Values.pod }}
+        imagePullPolicy: Always
+        serviceAccountName: {{ .Values.serviceAccount }}
+        env:
+          - name: PROVIDER
+            value: "{{ .Values.token }}"
+          - name: TOKEN
+            value: "{{ .Values.token }}"
+          - name: ROOM
+            value: "{{ .Values.room }}"

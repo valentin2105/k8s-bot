@@ -1,0 +1,6 @@
+pod: k8s-bot
+image: valentinnc/k8s-bot:latest
+serviceAccount: k8s-bot
+provider: Hipchat
+room: 399999
+token: vee2ohX2pieK8yeighiewooqu8aizo1iloh5

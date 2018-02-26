@@ -1,0 +1,38 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ .Values.pod }}-clusterrole
+rules:
+  - apiGroups: [""]
+    resources:
+      - pods
+      - nodes
+      - componentstatus
+      - ingresses
+      - cronjobs
+      - configmaps
+      - jobs
+      - persistentvolumes
+      - persistentvolumeclaims
+      - services
+      - networkpolicies
+      - namespaces
+    verbs:
+      - get
+      - describe
+      - logs
+      - exec
+      - label
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.pod }}-clusterrolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.pod }}-clusterrole
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.serviceAccount }}
+  namespace: {{ .Release.Namespace }}
