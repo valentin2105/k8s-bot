@@ -1,6 +1,6 @@
 # k8s-bot
 
-<img src="https://i.imgur.com/xEKfAnd.png" width="600" height="300" >
+<img src="https://i.imgur.com/xEKfAnd.png" width="500" height="200" >
 
 `k8s-bot` is a small Golang Bot that allow you to request your Kubernetes cluster via Hipchat channel.
 
@@ -23,7 +23,7 @@ helm install -n k8s-bot --namespace k8s-bot --set provider=Hipchat --set token=<
 !k all get pod --all-namespaces
 ```
 
-<img src="https://i.imgur.com/lFD3RN1.png" width="600" height="300" >
+<img src="https://i.imgur.com/lFD3RN1.png" width="700" height="250" >
 
 ## How to build ?
 ```
