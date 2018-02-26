@@ -52,6 +52,7 @@ func main() {
 					HipchatNotify(cl)
 					fmt.Println("Hipchat message sended...")
 				} else {
+					fmt.Printf("%s / %q", cmd, err)
 					fmt.Printf("Error during kubectl cmd : %q \n", err)
 				}
 				BasicAnswers(words)
