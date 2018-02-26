@@ -54,17 +54,16 @@ func CheckBeforeExec(words []string, lastmsg string) string {
 	return cmd
 }
 
+// ExecKubectl - Launch and format kubectl cmd.
 func ExecKubectl(cmd string) string {
+	cl := "null"
 	args := strings.Split(cmd, " ")
 	out, err := exec.Command(args[0], args[1:]...).Output()
 	if err == nil {
 		result := fmt.Sprintf("/code %s", out)
-		cl := strings.Replace(result, "\n\n", "\n", -1)
-		return cl
-	} else {
-		cl := "null"
-		return cl
+		cl = strings.Replace(result, "\n\n", "\n", -1)
 	}
+	return cl
 }
 
 // StringInSlice - check string in slice
