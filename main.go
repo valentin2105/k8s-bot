@@ -57,7 +57,7 @@ func main() {
 				BasicAnswers(words)
 			}
 		} else {
-			fmt.Print("Error, Provider unavailable %s \n", provider)
+			fmt.Printf("Error, Provider unavailable %s \n", provider)
 		}
 		// Slack
 		if *provider == "Slack" {

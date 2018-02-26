@@ -32,19 +32,19 @@ func CheckBeforeExec(words []string, lastmsg string) string {
 		}
 		// If command is too short
 		if len(words) <= 3 {
-			fmt.Print("Error, command unavailable %+v \n", cmd)
+			fmt.Printf("Error, command unavailable %+v \n", cmd)
 			HipchatNotify("Error, command incomplete")
 			cmd = "null"
 		}
 		// Match TRUSTED words (get, scale ...)
 		if StringInSlice(words[2], trustedVerbs) {
 			if words[2] == "logs" && StringInSlice("-f", words) {
-				fmt.Print("Error, command unavailable %+v \n", cmd)
+				fmt.Printf("Error, command unavailable %+v \n", cmd)
 				HipchatNotify("Error, command Forbidden (logs -f)")
 				cmd = "null"
 			}
 			if words[2] == "exec" && StringInSlice("-it", words) {
-				fmt.Print("Error, command unavailable %+v \n", cmd)
+				fmt.Printf("Error, command unavailable %+v \n", cmd)
 				HipchatNotify("Error, command Forbidden (exec -it)")
 				cmd = "null"
 			}
