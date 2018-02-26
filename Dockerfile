@@ -3,6 +3,7 @@ WORKDIR /go/src/git.nautile.tech/Kubernetes/k8s-bot
 RUN go get -d -v  github.com/tbruyelle/hipchat-go/hipchat
 COPY main.go .
 COPY global.go .
+COPY hipchat.go .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o k8s-bot .
 
 FROM alpine:latest
