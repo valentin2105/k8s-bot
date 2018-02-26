@@ -21,7 +21,7 @@ helm install -n k8s-bot --namespace k8s-bot --set provider=Hipchat --set token=<
 !k all get pod --all-namespaces
 ```
 
-<img src="https://i.imgur.com/lFD3RN1.png" width="700" height="250" >
+<img src="https://i.imgur.com/9qNRiiT.png" width="463" height="236"> 
 
 ## How to build ?
 ```
