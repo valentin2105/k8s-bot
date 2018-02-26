@@ -9,14 +9,16 @@ import (
 
 // GetLastHipchatMsg - Return last hipchat string msg
 func GetLastHipchatMsg(token string, room string) string {
+	var lastmsg string
 	c := hipchat.NewClient(token)
 	hist, resp, err := c.Room.History(room, &hipchat.HistoryOptions{})
-	last := hist.Items[len(hist.Items)-1]
-	lastmsg := last.Message
 	if err != nil {
 		fmt.Printf("Error during room history req %q, Return : %+v \n Wait for 10 seconds... \n", err, resp)
 		time.Sleep(10 * time.Second)
 		lastmsg = "null"
+	} else {
+		last := hist.Items[len(hist.Items)-1]
+		lastmsg = last.Message
 	}
 	return lastmsg
 
