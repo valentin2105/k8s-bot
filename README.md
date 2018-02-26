@@ -6,10 +6,10 @@
 
 
 
-`k8s-bot` is a small Golang Bot that allow you to request your Kubernetes cluster via Hipchat channel.
+`k8s-bot` is a small Golang Bot that allows you to interact with your Kubernetes cluster via Hipchat channel.
 
 ## How install it ?
-Install it quickly in your cluster using `Helm` with your Chat Application credentials :
+You can install it in your cluster using `Helm` and your Chat Application credentials:
 
 ```
 git clone https://github.com/valentin2105/k8s-bot.git && cd k8s-bot/helm
@@ -26,7 +26,7 @@ token: "thenah7oCaishei7een2it7iu9jucie5uphoa1ohg2ain2iengooShoo8Ee7eeNa" # Chan
 helm install -n k8s-bot --namespace k8s-bot .
 ```
 
-You need to use Hipchat User's token (`Account Settings -> API Access -> Generate token`)
+You should generate a Hipchat User's token (`Account Settings -> API Access -> Generate token`)
 
 ## How to use it ?
 ```
@@ -51,7 +51,7 @@ go build
 ./k8s-bot -h
 ```
 
-k8s-bot require `kubectl` and theses environment variables :
+k8s-bot requires `kubectl` and these environment variables:
 ```
 KUBERNETES_SERVICE_HOST=10.32.0.1	# By default on Kubernetes
 KUBERNETES_SERVICE_PORT=443		# By default on Kubernetes
@@ -59,4 +59,4 @@ PROVIDER=Hipchat
 TOKEN=<hipchat-user-token>
 ROOM=<hipchat-room-id>
 ```
-All of them are included on the Helm/Dockerfile stuffs.
+All of the above are included in the Helm chart and Dockerfile.
