@@ -6,8 +6,8 @@ import (
 	"github.com/tbruyelle/hipchat-go/hipchat"
 )
 
+// Add some funny questions
 func BasicAnswers(firstword string) {
-	// Add some funny questions
 	if firstword == "Hello" {
 		HipchatNotify("Hello boss, How I can help you ?")
 	}
@@ -22,6 +22,7 @@ func BasicAnswers(firstword string) {
 	}
 }
 
+// Notify Hipchat
 func HipchatNotify(message string) {
 	c := hipchat.NewClient(*token)
 	notifRq := &hipchat.NotificationRequest{Message: message, Color: color, From: botName, MessageFormat: "text"}
@@ -31,6 +32,7 @@ func HipchatNotify(message string) {
 	}
 }
 
+// IsStringinSlice ?
 func StringInSlice(str string, list []string) bool {
 	for _, v := range list {
 		if v == str {
