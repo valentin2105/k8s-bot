@@ -3,26 +3,56 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: {{ .Values.pod }}-clusterrole
 rules:
-  - apiGroups: [""]
+rules:
+  -
+    apiGroups:
+      - ""
+      - apps
+      - autoscaling
+      - batch
+      - extensions
+      - policy
+      - rbac.authorization.k8s.io
     resources:
-      - pods
-      - nodes
-      - componentstatus
-      - ingresses
-      - cronjobs
+      - componentstatuses
       - configmaps
+      - daemonsets
+      - deployments
+      - events
+      - endpoints
+      - horizontalpodautoscalers
+      - ingress
       - jobs
+      - limitranges
+      - namespaces
+      - nodes
+      - pods
       - persistentvolumes
       - persistentvolumeclaims
+      - resourcequotas
+      - replicasets
+      - replicationcontrollers
+      - serviceaccounts
       - services
-      - networkpolicies
-      - namespaces
     verbs:
       - get
+      - watch
+      - list
       - describe
       - logs
-      - exec
-      - label
+      - scale
+      - rollout
+      - run
+  - nonResourceURLs: ["*"]
+    verbs:
+      - get
+      - watch
+      - list
+      - describe
+      - logs
+      - scale
+      - rollout
+      - run
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -34,5 +64,5 @@ roleRef:
   name: {{ .Values.pod }}-clusterrole
 subjects:
 - kind: ServiceAccount
-  name: {{ .Values.serviceAccount }}
+  name: k8s-bot
   namespace: {{ .Release.Namespace }}

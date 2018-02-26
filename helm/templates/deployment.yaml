@@ -1,5 +1,6 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: Deployment
+apiVersion: extensions/v1beta1
 metadata:
   name: {{ .Values.pod }}
   labels:
@@ -15,14 +16,15 @@ spec:
         k8s-app: {{ .Values.pod }}
         name: {{ .Values.pod }}
     spec:
+      serviceAccountName: {{ .Values.serviceAccount }}
+      serviceAccount: {{ .Values.serviceAccount }}
       containers:
       - image: {{ .Values.image }}
         name: {{ .Values.pod }}
         imagePullPolicy: Always
-        serviceAccountName: {{ .Values.serviceAccount }}
         env:
           - name: PROVIDER
-            value: "{{ .Values.token }}"
+            value: "{{ .Values.provider }}"
           - name: TOKEN
             value: "{{ .Values.token }}"
           - name: ROOM
