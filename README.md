@@ -60,3 +60,8 @@ TOKEN=<hipchat-user-token>
 ROOM=<hipchat-room-id>
 ```
 All of the above are included in the Helm chart and Dockerfile.
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/valentin2105/k8s-bot/badge.svg?style=beer-square)](https://beerpay.io/valentin2105/k8s-bot)  [![Beerpay](https://beerpay.io/valentin2105/k8s-bot/make-wish.svg?style=flat-square)](https://beerpay.io/valentin2105/k8s-bot?focus=wish)
