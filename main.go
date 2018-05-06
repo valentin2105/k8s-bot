@@ -18,6 +18,7 @@ const (
 var (
 	trustedVerbs = []string{"get", "scale", "exec", "describe", "label", "annotate", "version", "logs", "rollout"}
 	provider     = flag.String("provider", "Hipchat", "The Provider (Hipchat by default)")
+	baseurl      = flag.String("host", "", "The BaseURL to talk to hipchat")
 	token        = flag.String("token", "", "The AuthToken")
 	room         = flag.String("room", "", "The Room ID")
 	cmd          string
@@ -25,7 +26,7 @@ var (
 
 func main() {
 	flag.Parse()
-	if *token == "" || *room == "" || *provider == "" {
+	if *token == "" || *baseurl == "" || *room == "" || *provider == "" {
 		flag.PrintDefaults()
 		return
 	}
@@ -34,7 +35,7 @@ func main() {
 	start:
 		// Hipchat
 		if *provider == "Hipchat" {
-			lastmsg := GetLastHipchatMsg(*token, *room)
+			lastmsg := GetLastHipchatMsg(*token, *baseurl, *room)
 			if lastmsg == "null" {
 				goto start
 			}
