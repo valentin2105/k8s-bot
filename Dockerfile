@@ -1,5 +1,5 @@
 FROM golang:1.10.0-stretch
-WORKDIR /go/src/git.nautile.tech/Kubernetes/k8s-bot
+WORKDIR /go/src/github.com/valentin2105/k8s-bot
 RUN go get -d -v  github.com/tbruyelle/hipchat-go/hipchat
 COPY main.go .
 COPY global.go .
@@ -14,6 +14,6 @@ RUN apk update \
     && chmod +x /usr/local/bin/kubectl
 
 WORKDIR /root/
-COPY --from=0 /go/src/git.nautile.tech/Kubernetes/k8s-bot/k8s-bot .
+COPY --from=0 /go/src/github.com/valentin2105/k8s-bot/k8s-bot .
 COPY docker-entrypoint.sh .
 CMD ["./docker-entrypoint.sh"]
